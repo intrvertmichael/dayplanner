@@ -1,18 +1,8 @@
 .wrapper {
 	display: block;
 	position: absolute;
-	left: 60px;
 	padding: 2px 0px;
 	box-sizing: border-box;
-
-	/* 15 min intervals */
-	/* height: 50px; */
-
-	/* 30 min intervals */
-	height: 100px;
-
-	/* 1 hour intervals */
-	/* height: 200px; */
 }
 
 .event {
@@ -23,7 +13,7 @@
 	height: 100%;
 	font-size: 0.8em;
 	box-sizing: border-box;
-	padding: 5px 40px 5px 20px;
+	padding: 0px 30px;
 }
 
 .green {
@@ -39,7 +29,7 @@
 	align-items: center;
 	justify-content: center;
 	font-size: 2em;
-	margin-right: 30px;
+	margin-right: 20px;
 }
 
 .description {
