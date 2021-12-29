@@ -1,0 +1,21 @@
+.intro {
+	width: fit-content;
+	text-align: right;
+	position: absolute;
+	right: 0px;
+	padding-right: 30px;
+	box-sizing: border-box;
+	z-index: 10;
+}
+
+.intro h1 {
+	font-size: 2em;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	font-weight: normal;
+}
+
+.intro p {
+	margin-top: 5px;
+	font-size: 1em;
+}
