@@ -1,24 +1,37 @@
 import styles from '../../styles/Event.module.css'
 
-interface Props {
+interface DayEvent {
+	id: number
+	label: string
+	icon: string
+	startTime: number
+	length: number
 	color: string
 }
 
-const Event = (Props: Props) => {
-	const { color } = Props
+interface Props {
+	key: number
+	eventDetails: DayEvent
+}
 
-	let classes = `${styles.wrapper} `
-	if (color === 'green') classes += ` ${styles.green}`
-	if (color === 'yellow') classes += ` ${styles.yellow}`
+const Event = ({ eventDetails }: Props) => {
+	const eventStyles = {
+		backgroundColor: eventDetails.color,
+	}
+
+	const position = {
+		top: Math.round(eventDetails.startTime * 3.3333),
+		height: Math.round(eventDetails.length * 3.3333),
+	}
 
 	return (
-		<div className={classes}>
-			<div className={styles.event}>
-				<div className={styles.icon}>🏀</div>
+		<div style={position} className={styles.wrapper}>
+			<div style={eventStyles} className={styles.event}>
+				<div className={styles.icon}> {eventDetails.icon} </div>
 
 				<div className={styles.description}>
-					<div className={styles.title}>This is an event description</div>
-					<div className={styles.time}> 6:00am - 7:00am </div>
+					<div className={styles.title}> {eventDetails.label} </div>
+					<div className={styles.time}> {eventDetails.startTime} </div>
 				</div>
 			</div>
 		</div>

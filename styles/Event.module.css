@@ -1,19 +1,29 @@
 .wrapper {
-	padding: 2px 0px;
-	box-sizing: border-box;
 	display: block;
 	position: absolute;
 	left: 60px;
+	padding: 2px 0px;
+	box-sizing: border-box;
+
+	/* 15 min intervals */
+	/* height: 50px; */
+
+	/* 30 min intervals */
+	height: 100px;
+
+	/* 1 hour intervals */
+	/* height: 200px; */
 }
 
 .event {
-	box-sizing: border-box;
-	padding: 10px 40px 10px 20px;
-	height: 46px;
 	display: flex;
 	align-items: center;
 	border-radius: 5px;
 	background: lightgray;
+	height: 100%;
+	font-size: 0.8em;
+	box-sizing: border-box;
+	padding: 5px 40px 5px 20px;
 }
 
 .green {
@@ -21,18 +31,14 @@
 }
 
 .yellow {
-	top: 50px;
+	top: 100px;
 }
 
 .icon {
-	width: 30px;
-	height: 30px;
 	display: flex;
 	align-items: center;
-	font-size: 1.5em;
 	justify-content: center;
-	background: rgba(0, 0, 0, 0.1);
-	border-radius: 50%;
+	font-size: 2em;
 	margin-right: 30px;
 }
 
