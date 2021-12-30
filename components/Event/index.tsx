@@ -12,8 +12,8 @@ const Event = ({ eventDetails }: Props) => {
 	}
 
 	const pos = {
-		top: Math.round(eventDetails.startTime * 3.3333),
 		height: Math.round(eventDetails.length * 3.3333),
+		top: Math.round(eventDetails.startTime * 3.3333),
 		left: '80px',
 	}
 
@@ -28,13 +28,9 @@ const Event = ({ eventDetails }: Props) => {
 	if (eventDetails.length <= 15) {
 		gap = 0
 		limit = 45
-	} else if (eventDetails.length <= 30) {
-		limit = 90
-	} else if (eventDetails.length <= 45) {
-		limit = 140
-	} else {
-		limit = 180
-	}
+	} else if (eventDetails.length <= 30) limit = 90
+	else if (eventDetails.length <= 45) limit = 140
+	else limit = 180
 
 	let labelGap = { paddingBottom: `${gap}px` }
 	let label =

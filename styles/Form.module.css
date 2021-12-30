@@ -1,0 +1,96 @@
+.form {
+	width: 400px;
+	padding: 20px 50px 30px;
+	box-sizing: border-box;
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	background: black;
+	color: white;
+	border-radius: 5px 0px 0px 0px;
+	line-height: 1.5em;
+	transition: transform ease 0.5s;
+}
+
+.toggle {
+	position: absolute;
+	bottom: 10px;
+	left: -105px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	font-size: 3em;
+	background: black;
+	color: white;
+	cursor: pointer;
+	transition: transform ease 0.5s;
+}
+
+.form label {
+	width: 100%;
+	display: block;
+	text-align: left;
+	padding: 10px 0px;
+	box-sizing: border-box;
+}
+
+.form input[type='text'] {
+	padding: 10px;
+	box-sizing: border-box;
+	width: 100%;
+	border-radius: 5px;
+	font-size: 1.2em;
+}
+
+.form input[type='button'] {
+	margin-top: 30px;
+	padding: 10px 20px;
+	border-radius: 5px;
+}
+
+.colors {
+	display: flex;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.colorBlock {
+	width: 25%;
+	padding-bottom: 10%;
+	border: 2px solid black;
+}
+
+.colorBlock:nth-child(1) {
+	background-color: #ffafa2;
+}
+.colorBlock:nth-child(2) {
+	background-color: #a2d39b;
+}
+.colorBlock:nth-child(3) {
+	background-color: #b4cfe7;
+}
+.colorBlock:nth-child(4) {
+	background-color: #f4b721;
+}
+
+.time {
+	margin-top: 30px;
+}
+
+.timeSelection {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 50px;
+}
+
+.timeSelection p {
+	font-size: 2em;
+	padding: 0px 20px;
+}
+
+.timeSelection select {
+	padding: 20px;
+	background: none;
+	color: white;
+}
