@@ -14,11 +14,33 @@ const Event = ({ eventDetails }: Props) => {
 	const pos = {
 		top: Math.round(eventDetails.startTime * 3.3333),
 		height: Math.round(eventDetails.length * 3.3333),
-		left: '100px',
+		left: '80px',
 	}
 
+	// converting minutes to readable time
 	const startTime = convertTime(eventDetails.startTime)
 	const endTime = convertTime(eventDetails.endTime)
+
+	// creating character limit and gap between label and time
+	let gap: number = 5
+	let limit: number
+
+	if (eventDetails.length <= 15) {
+		gap = 0
+		limit = 45
+	} else if (eventDetails.length <= 30) {
+		limit = 90
+	} else if (eventDetails.length <= 45) {
+		limit = 140
+	} else {
+		limit = 180
+	}
+
+	let labelGap = { paddingBottom: `${gap}px` }
+	let label =
+		eventDetails.label.length >= limit
+			? eventDetails.label.substring(0, limit) + '...'
+			: eventDetails.label
 
 	return (
 		<div style={pos} className={styles.wrapper}>
@@ -26,7 +48,9 @@ const Event = ({ eventDetails }: Props) => {
 				<div className={styles.icon}> {eventDetails.icon} </div>
 
 				<div className={styles.description}>
-					<div className={styles.title}> {eventDetails.label} </div>
+					<div style={labelGap} className={styles.label}>
+						{label}
+					</div>
 					<div className={styles.time}>
 						{startTime} - {endTime}
 					</div>

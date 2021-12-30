@@ -12,16 +12,9 @@
 	background: lightgray;
 	height: 100%;
 	font-size: 0.8em;
+	line-height: 1.2em;
 	box-sizing: border-box;
 	padding: 0px 30px;
-}
-
-.green {
-	top: 0px;
-}
-
-.yellow {
-	top: 100px;
 }
 
 .icon {
@@ -34,9 +27,10 @@
 
 .description {
 	max-width: 300px;
+	word-break: break-all;
 }
 
-.title {
+.label {
 	font-weight: bold;
 	padding-bottom: 0px;
 	display: block;
