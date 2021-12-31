@@ -8,7 +8,7 @@ import Time from './time'
 const Form = () => {
 	const [showForm, setShowForm] = useState(false)
 
-	function handleClick() {
+	function toggleFormVisbility() {
 		setShowForm(!showForm)
 	}
 
@@ -27,7 +27,7 @@ const Form = () => {
 						? { transform: 'rotate(45deg)' }
 						: { transform: 'rotate(0deg)' }
 				}
-				onClick={handleClick}>
+				onClick={toggleFormVisbility}>
 				+
 			</button>
 

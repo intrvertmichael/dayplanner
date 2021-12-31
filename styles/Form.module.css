@@ -47,13 +47,18 @@
 	margin-top: 30px;
 	padding: 10px 20px;
 	border-radius: 5px;
+	background: white;
+	border: 1px solid black;
+	cursor: pointer;
+}
+.form input[type='button']:hover {
+	border: 1px solid white;
 }
 
 /* COLORS */
 
 .colors {
 	display: flex;
-	border-radius: 10px;
 	overflow: hidden;
 }
 
@@ -63,17 +68,12 @@
 	border: 2px solid black;
 }
 
-.colorBlock:nth-child(1) {
-	background-color: #ffafa2;
+.colorBlock:first-child {
+	border-radius: 5px 0px 0px 5px;
 }
-.colorBlock:nth-child(2) {
-	background-color: #a2d39b;
-}
-.colorBlock:nth-child(3) {
-	background-color: #b4cfe7;
-}
-.colorBlock:nth-child(4) {
-	background-color: #f4b721;
+
+.colorBlock:last-child {
+	border-radius: 0px 5px 5px 0px;
 }
 
 /* TIME */
