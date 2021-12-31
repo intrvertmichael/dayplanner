@@ -15,7 +15,7 @@
 
 .form {
 	width: 400px;
-	padding: 20px 50px 30px;
+	padding: 25px;
 	box-sizing: border-box;
 	position: fixed;
 	bottom: 0px;
@@ -31,7 +31,7 @@
 	width: 100%;
 	display: block;
 	text-align: left;
-	padding: 10px 0px;
+	padding: 20px 0px;
 	box-sizing: border-box;
 }
 
@@ -80,6 +80,7 @@
 
 .time {
 	margin-top: 10px;
+	padding: 0px 30px;
 }
 
 .timeSelection {
@@ -128,4 +129,44 @@
 
 .timeSelection select:last-child {
 	background-color: rgb(242, 242, 242);
+}
+
+/* ICON */
+
+.icon {
+	width: 100%;
+	height: 150px;
+	overflow: scroll;
+	background: #464646;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.icon ul,
+.icon li {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.icon ul {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.icon li {
+	width: 20%;
+	padding: 10px;
+	box-sizing: border-box;
+	font-size: 2.5em;
+	line-height: 1em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.search input {
+	border: none;
+	border-top: 2px solid black;
+	border-radius: 0px 0px 5px 5px !important;
 }

@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import Color from './color'
 import Text from './text'
+import Icon from './icon'
 import Time from './time'
 
 const Form = () => {
@@ -24,15 +25,15 @@ const Form = () => {
 				className={styles.toggle}
 				style={
 					showForm
-						? { transform: 'rotate(45deg)' }
+						? { transform: 'rotate(-45deg)' }
 						: { transform: 'rotate(0deg)' }
 				}
 				onClick={toggleFormVisbility}>
 				+
 			</button>
 
-			<h3>Add an Event:</h3>
-
+			<h3>Add an Event</h3>
+			<Icon />
 			<Color />
 			<Text />
 			<Time start={true} />

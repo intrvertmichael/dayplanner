@@ -10,7 +10,11 @@ const Text = () => {
 	return (
 		<>
 			<label>Event Label:</label>
-			<input type='text' onChange={(e) => setCurrentText(e.target.value)} />
+			<input
+				type='text'
+				placeholder='Enter the Event Label here...'
+				onChange={(e) => setCurrentText(e.target.value)}
+			/>
 		</>
 	)
 }
