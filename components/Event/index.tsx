@@ -11,8 +11,10 @@ const Event = ({ eventDetails }: Props) => {
 		backgroundColor: eventDetails.color,
 	}
 
+	const length = eventDetails.endTime - eventDetails.startTime
+
 	const pos = {
-		height: Math.round(eventDetails.length * 3.3333),
+		height: Math.round(length * 3.3333),
 		top: Math.round(eventDetails.startTime * 3.3333),
 		left: '80px',
 	}
@@ -25,11 +27,11 @@ const Event = ({ eventDetails }: Props) => {
 	let gap: number = 5
 	let limit: number
 
-	if (eventDetails.length <= 15) {
+	if (length <= 15) {
 		gap = 0
 		limit = 45
-	} else if (eventDetails.length <= 30) limit = 90
-	else if (eventDetails.length <= 45) limit = 140
+	} else if (length <= 30) limit = 90
+	else if (length <= 45) limit = 140
 	else limit = 180
 
 	let labelGap = { paddingBottom: `${gap}px` }

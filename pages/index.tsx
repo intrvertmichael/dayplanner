@@ -14,7 +14,6 @@ const Home: NextPage = () => {
 			icon: '🏀',
 			startTime: 0, // in minutes
 			endTime: 15, // in minutes
-			length: 15,
 			color: '#FFAFA2', // red
 		},
 		{
@@ -23,7 +22,6 @@ const Home: NextPage = () => {
 			icon: '⚽️',
 			startTime: 15,
 			endTime: 45,
-			length: 30,
 			color: '#A2D39B', // green
 		},
 		{
@@ -32,7 +30,6 @@ const Home: NextPage = () => {
 			icon: '🚄',
 			startTime: 45,
 			endTime: 90,
-			length: 45,
 			color: '#B4CFE7', // blue
 		},
 		{
@@ -41,7 +38,6 @@ const Home: NextPage = () => {
 			icon: '🤼‍♂️',
 			startTime: 90,
 			endTime: 150,
-			length: 60,
 			color: '#F4B721', // yellow
 		},
 		{
@@ -50,7 +46,6 @@ const Home: NextPage = () => {
 			icon: '🌸',
 			startTime: 870,
 			endTime: 900,
-			length: 30,
 			color: '#F4B721', // yellow
 		},
 	])

@@ -4,6 +4,5 @@ export interface DayEvent {
 	icon: string
 	startTime: number
 	endTime: number
-	length: number
 	color: string
 }
