@@ -1,13 +1,39 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from '../../styles/Form.module.css'
 
-const Color = () => {
+import { FormProps } from '../../types'
+
+const Color = ({ previewDetails, setPreviewDetails }: FormProps) => {
 	const [selectedColor, setSelectedColor] = useState('')
 
-	useEffect(() => {
-		console.log('Selected Color: ', selectedColor)
-	}, [selectedColor])
+	type hexColorType = {
+		[key: string]: string
+	}
+
+	const hexColor: hexColorType = {
+		red: '#ffafa2',
+		green: '#a2d39b',
+		blue: '#b4cfe7',
+		yellow: '#f4b721',
+	}
+
 	const chosen = '2px solid white'
+
+	function colorChosen(color: string) {
+		if (color === selectedColor) {
+			setSelectedColor('')
+			setPreviewDetails({
+				...previewDetails,
+				color: '',
+			})
+		} else {
+			setSelectedColor(color)
+			setPreviewDetails({
+				...previewDetails,
+				color: hexColor[color],
+			})
+		}
+	}
 
 	return (
 		<>
@@ -15,24 +41,24 @@ const Color = () => {
 			<div className={styles.colors}>
 				<div
 					className={styles.colorBlock}
-					onClick={() => setSelectedColor('red')}
+					onClick={() => colorChosen('red')}
 					style={{
-						background: '#ffafa2',
+						background: hexColor['red'],
 						border: selectedColor === 'red' ? chosen : '',
 					}}
 				/>
 				<div
 					className={styles.colorBlock}
-					onClick={() => setSelectedColor('green')}
+					onClick={() => colorChosen('green')}
 					style={{
-						background: '#a2d39b',
+						background: hexColor['green'],
 						border: selectedColor === 'green' ? chosen : '',
 					}}
 				/>
 
 				<div
 					className={styles.colorBlock}
-					onClick={() => setSelectedColor('blue')}
+					onClick={() => colorChosen('blue')}
 					style={{
 						background: '#b4cfe7',
 						border: selectedColor === 'blue' ? chosen : '',
@@ -41,7 +67,7 @@ const Color = () => {
 
 				<div
 					className={styles.colorBlock}
-					onClick={() => setSelectedColor('yellow')}
+					onClick={() => colorChosen('yellow')}
 					style={{
 						background: '#f4b721',
 						border: selectedColor === 'yellow' ? chosen : '',

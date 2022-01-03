@@ -1,6 +1,8 @@
 import styles from '../../styles/Form.module.css'
 import { useState } from 'react'
 
+import { DayEvent } from '../../types'
+
 import Color from './color'
 import Text from './text'
 import Icon from './icon'
@@ -9,6 +11,15 @@ import Preview from './preview'
 
 const Form = () => {
 	const [showForm, setShowForm] = useState(false)
+	const [previewDetails, setPreviewDetails] = useState<DayEvent>({
+		preview: true,
+		id: 0,
+		label: 'This is the Event Label',
+		icon: '🙂',
+		startTime: 0, // in minutes
+		endTime: 45, // in minutes
+		color: '',
+	})
 
 	function toggleFormVisbility() {
 		setShowForm(!showForm)
@@ -33,14 +44,31 @@ const Form = () => {
 				+
 			</button>
 
-			<Preview showForm={showForm} />
+			<Preview showForm={showForm} previewDetails={previewDetails} />
 
 			<h3>Add an Event</h3>
-			<Icon />
-			<Color />
-			<Text />
-			<Time start={true} />
-			<Time start={false} />
+			<Icon
+				previewDetails={previewDetails}
+				setPreviewDetails={setPreviewDetails}
+			/>
+			<Color
+				previewDetails={previewDetails}
+				setPreviewDetails={setPreviewDetails}
+			/>
+			<Text
+				previewDetails={previewDetails}
+				setPreviewDetails={setPreviewDetails}
+			/>
+			<Time
+				start={true}
+				previewDetails={previewDetails}
+				setPreviewDetails={setPreviewDetails}
+			/>
+			<Time
+				start={false}
+				// previewDetails={previewDetails}
+				// setPreviewDetails={setPreviewDetails}
+			/>
 
 			<input type='button' value='send' />
 		</div>

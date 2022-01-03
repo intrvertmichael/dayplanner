@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import styles from '../../styles/Form.module.css'
+import { DayEvent } from '../../types'
 
 interface Props {
 	start: boolean
+	previewDetails: DayEvent
+	setPreviewDetails: React.Dispatch<React.SetStateAction<DayEvent>>
 }
 
-const Time = (props: Props) => {
+const Time = ({ start, previewDetails, setPreviewDetails }: Props) => {
 	const [fulltime, setFullTime] = useState({
 		hours: 1,
 		mins: 0,
@@ -18,12 +21,12 @@ const Time = (props: Props) => {
 		totalMins += fulltime.mins
 		totalMins += fulltime.pm ? 12 * 60 : 0
 
-		if (props.start) {
+		if (start) {
 			console.log('Start Time: ', totalMins)
 		} else {
 			console.log('End Time: ', totalMins)
 		}
-	}, [fulltime, props.start])
+	}, [fulltime, start])
 
 	function hourChanged(e: React.ChangeEvent<HTMLSelectElement>) {
 		setFullTime({ ...fulltime, hours: parseInt(e.target.value) })
@@ -42,7 +45,7 @@ const Time = (props: Props) => {
 
 	return (
 		<div className={styles.time}>
-			<label>{props.start ? 'Start Time:' : 'End Time'}</label>
+			<label>{start ? 'Start Time:' : 'End Time'}</label>
 
 			<div className={styles.timeSelection}>
 				<select name='hour' id='hour' onChange={hourChanged}>

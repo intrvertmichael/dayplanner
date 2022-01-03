@@ -1,7 +1,9 @@
-import { ReactEventHandler, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../../styles/Form.module.css'
 
-const Icon = () => {
+import { FormProps } from '../../types'
+
+const Icon = ({ previewDetails, setPreviewDetails }: FormProps) => {
 	const [query, setQuery] = useState('')
 	const [emojis, setEmojis] = useState([])
 
@@ -23,7 +25,10 @@ const Icon = () => {
 	}
 
 	function emojiClicked(emoji: string) {
-		console.log(emoji)
+		setPreviewDetails({
+			...previewDetails,
+			icon: emoji,
+		})
 	}
 
 	return (

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
+import { FormProps } from '../../types'
 
-const Text = () => {
+const Text = ({ previewDetails, setPreviewDetails }: FormProps) => {
 	const [currentText, setCurrentText] = useState('')
 
 	useEffect(() => {
@@ -13,7 +14,19 @@ const Text = () => {
 			<input
 				type='text'
 				placeholder='Enter the Event Label here...'
-				onChange={(e) => setCurrentText(e.target.value)}
+				onChange={(e) => {
+					if (e.target.value === '') {
+						setPreviewDetails({
+							...previewDetails,
+							label: 'This is the Event Label',
+						})
+					} else {
+						setPreviewDetails({
+							...previewDetails,
+							label: e.target.value,
+						})
+					}
+				}}
 			/>
 		</>
 	)

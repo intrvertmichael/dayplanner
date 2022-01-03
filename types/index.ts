@@ -7,3 +7,8 @@ export interface DayEvent {
 	color: string
 	preview?: boolean
 }
+
+export interface FormProps {
+	previewDetails: DayEvent
+	setPreviewDetails: React.Dispatch<React.SetStateAction<DayEvent>>
+}

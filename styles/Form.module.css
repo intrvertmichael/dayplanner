@@ -66,6 +66,7 @@
 	width: 25%;
 	padding-bottom: 10%;
 	border: 2px solid black;
+	cursor: pointer;
 }
 
 .colorBlock:first-child {
@@ -176,15 +177,14 @@
 }
 
 .example {
-	padding: 30px;
+	padding: 20px;
 	box-sizing: border-box;
 	position: absolute;
-	transition: transform ease 0.5s;
-	width: 350px;
+	width: 400px;
 	background: rgba(0, 0, 0, 0.1);
-	/* background: #e5e5e5; */
 	color: black;
 	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.2);
+	transition: transform ease 0.5s;
 }
 
 .example h3 {
