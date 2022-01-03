@@ -3,10 +3,11 @@ import { DayEvent } from '../../types'
 
 interface Props {
 	key: number
+	left: number
 	eventDetails: DayEvent
 }
 
-const Event = ({ eventDetails }: Props) => {
+const Event = ({ eventDetails, left }: Props) => {
 	const eventStyles = {
 		backgroundColor: eventDetails.color,
 	}
@@ -15,9 +16,10 @@ const Event = ({ eventDetails }: Props) => {
 
 	const pos = {
 		height: Math.round(length * 3.3333),
+		position: eventDetails && eventDetails.preview ? 'relative' : 'absolute',
 		top: Math.round(eventDetails.startTime * 3.3333),
-		left: '80px',
-	}
+		left: `${left}px`,
+	} as React.CSSProperties
 
 	// converting minutes to readable time
 	const startTime = convertTime(eventDetails.startTime)

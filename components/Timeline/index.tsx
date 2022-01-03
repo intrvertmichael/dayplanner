@@ -19,7 +19,7 @@ const Timeline = (Props: Props) => {
 			<ul className={styles.timeline}>{labels}</ul>
 
 			{events.map((eventDetails, key) => (
-				<Event key={key} eventDetails={eventDetails} />
+				<Event key={key} left={80} eventDetails={eventDetails} />
 			))}
 		</>
 	)

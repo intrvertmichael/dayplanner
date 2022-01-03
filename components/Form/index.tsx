@@ -5,6 +5,7 @@ import Color from './color'
 import Text from './text'
 import Icon from './icon'
 import Time from './time'
+import Preview from './preview'
 
 const Form = () => {
 	const [showForm, setShowForm] = useState(false)
@@ -31,6 +32,8 @@ const Form = () => {
 				onClick={toggleFormVisbility}>
 				+
 			</button>
+
+			<Preview showForm={showForm} />
 
 			<h3>Add an Event</h3>
 			<Icon />

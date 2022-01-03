@@ -9,10 +9,8 @@ const Icon = () => {
 		getEmojis().then((all) => setEmojis(all))
 	}, [])
 
-	async function formSubmitted(e) {
+	async function formSubmitted(e: React.FormEvent) {
 		e.preventDefault()
-
-		console.log(query)
 
 		let results
 		if (query === '') {

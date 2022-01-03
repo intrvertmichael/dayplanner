@@ -5,4 +5,5 @@ export interface DayEvent {
 	startTime: number
 	endTime: number
 	color: string
+	preview?: boolean
 }
