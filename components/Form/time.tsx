@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from '../../styles/Form.module.css'
 import { DayEvent } from '../../types'
 
@@ -8,32 +8,52 @@ interface Props {
 	setPreviewDetails: React.Dispatch<React.SetStateAction<DayEvent>>
 }
 
+interface Time {
+	hours: number
+	mins: number
+	pm: boolean
+}
+
 const Time = ({ start, previewDetails, setPreviewDetails }: Props) => {
-	const [fulltime, setFullTime] = useState({
-		hours: 1,
+	const [fulltime, setFullTime] = useState<Time>({
+		hours: start ? 12 : Math.round(previewDetails.startTime / 60),
 		mins: 0,
 		pm: false,
 	})
 
-	useEffect(() => {
+	function updatePreview(updatedTime: Time) {
 		let totalMins: number = 0
-		totalMins += fulltime.hours * 60
-		totalMins += fulltime.mins
-		totalMins += fulltime.pm ? 12 * 60 : 0
+		totalMins += updatedTime.hours * 60
+		totalMins += updatedTime.mins
+		totalMins += updatedTime.pm ? 12 * 60 : 0
 
 		if (start) {
-			console.log('Start Time: ', totalMins)
+			setPreviewDetails({
+				...previewDetails,
+				startTime: totalMins,
+				endTime: totalMins + 30,
+			})
 		} else {
-			console.log('End Time: ', totalMins)
+			setPreviewDetails({
+				...previewDetails,
+				endTime: totalMins,
+			})
 		}
-	}, [fulltime, start])
+	}
 
 	function hourChanged(e: React.ChangeEvent<HTMLSelectElement>) {
-		setFullTime({ ...fulltime, hours: parseInt(e.target.value) })
+		if (start) {
+			setFullTime({ ...fulltime, hours: parseInt(e.target.value) })
+			updatePreview({ ...fulltime, hours: parseInt(e.target.value) })
+		} else {
+			setFullTime({ ...fulltime, hours: parseInt(e.target.value) })
+			updatePreview({ ...fulltime, hours: parseInt(e.target.value) })
+		}
 	}
 
 	function minChanged(e: React.ChangeEvent<HTMLSelectElement>) {
 		setFullTime({ ...fulltime, mins: parseInt(e.target.value) })
+		updatePreview({ ...fulltime, mins: parseInt(e.target.value) })
 	}
 
 	function amPmChanged(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -41,24 +61,40 @@ const Time = ({ start, previewDetails, setPreviewDetails }: Props) => {
 			...fulltime,
 			pm: e.target.value === 'pm' ? true : false,
 		})
+		updatePreview({
+			...fulltime,
+			pm: e.target.value === 'pm' ? true : false,
+		})
 	}
+
+	const hours = start
+		? Math.floor(previewDetails.startTime / 60)
+		: Math.floor(previewDetails.endTime / 60)
+
+	const mins = start
+		? previewDetails.startTime % 60
+		: previewDetails.endTime % 60
 
 	return (
 		<div className={styles.time}>
 			<label>{start ? 'Start Time:' : 'End Time'}</label>
 
 			<div className={styles.timeSelection}>
-				<select name='hour' id='hour' onChange={hourChanged}>
-					{getHours()}
+				<select name='hour' value={hours} id='hour' onChange={hourChanged}>
+					{getHours(start, previewDetails.startTime)}
 				</select>
 
 				<p>:</p>
 
-				<select name='min' id='min' onChange={minChanged}>
+				<select name='min' id='min' value={mins} onChange={minChanged}>
 					{getMins()}
 				</select>
 
-				<select name='min' id='min' onChange={amPmChanged}>
+				<select
+					name='min'
+					id='min'
+					value={fulltime.pm ? 'pm' : 'am'}
+					onChange={amPmChanged}>
 					<option value='am'> am </option>
 					<option value='pm'> pm </option>
 				</select>
@@ -67,9 +103,14 @@ const Time = ({ start, previewDetails, setPreviewDetails }: Props) => {
 	)
 }
 
-function getHours() {
+function getHours(start: boolean, startTime: number) {
+	let limit = Math.round(startTime / 60)
+	if (limit === 24) limit = 1
+	else if (limit > 12) limit = limit - 12
+	else if (limit === 0) limit = 12
+
 	let hourDropDown: JSX.Element[] = []
-	let hours = 1
+	let hours = start ? 1 : limit
 	while (hours <= 12) {
 		hourDropDown.push(
 			<option key={hours} value={hours}>

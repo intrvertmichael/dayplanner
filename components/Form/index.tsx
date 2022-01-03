@@ -16,8 +16,8 @@ const Form = () => {
 		id: 0,
 		label: 'This is the Event Label',
 		icon: '🙂',
-		startTime: 0, // in minutes
-		endTime: 45, // in minutes
+		startTime: 0,
+		endTime: 30,
 		color: '',
 	})
 
@@ -66,8 +66,8 @@ const Form = () => {
 			/>
 			<Time
 				start={false}
-				// previewDetails={previewDetails}
-				// setPreviewDetails={setPreviewDetails}
+				previewDetails={previewDetails}
+				setPreviewDetails={setPreviewDetails}
 			/>
 
 			<input type='button' value='send' />

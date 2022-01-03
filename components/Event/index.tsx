@@ -17,7 +17,10 @@ const Event = ({ eventDetails, left }: Props) => {
 	const pos = {
 		height: Math.round(length * 3.3333),
 		position: eventDetails && eventDetails.preview ? 'relative' : 'absolute',
-		top: Math.round(eventDetails.startTime * 3.3333),
+		top:
+			eventDetails && eventDetails.preview
+				? 0
+				: Math.round(eventDetails.startTime * 3.3333),
 		left: `${left}px`,
 	} as React.CSSProperties
 
