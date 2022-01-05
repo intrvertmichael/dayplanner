@@ -1,9 +1,15 @@
+interface Time {
+	hours: number
+	mins: number
+	pm: boolean
+}
+
 export interface DayEvent {
 	id: number
 	label: string
 	icon: string
-	startTime: number
-	endTime: number
+	time_start: Time
+	time_end: Time
 	color: string
 	preview?: boolean
 }

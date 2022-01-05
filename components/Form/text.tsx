@@ -1,13 +1,6 @@
-import { useState, useEffect } from 'react'
 import { FormProps } from '../../types'
 
 const Text = ({ previewDetails, setPreviewDetails }: FormProps) => {
-	const [currentText, setCurrentText] = useState('')
-
-	useEffect(() => {
-		console.log('currentText', currentText)
-	}, [currentText])
-
 	return (
 		<>
 			<label>Event Label:</label>

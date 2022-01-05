@@ -12,21 +12,32 @@ const Event = ({ eventDetails, left }: Props) => {
 		backgroundColor: eventDetails.color,
 	}
 
-	const length = eventDetails.endTime - eventDetails.startTime
+	let totalStartTime: number = 0
+	totalStartTime += eventDetails.time_start.hours * 60
+	totalStartTime += eventDetails.time_start.mins
+	totalStartTime += eventDetails.time_start.pm ? 12 * 60 : 0
+
+	let totalEndTime: number = 0
+	totalEndTime += eventDetails.time_end.hours * 60
+	totalEndTime += eventDetails.time_end.mins
+	totalEndTime += eventDetails.time_end.pm ? 12 * 60 : 0
+
+	const length = totalEndTime - totalStartTime
 
 	const pos = {
 		height: Math.round(length * 3.3333),
+		maxHeight: eventDetails && eventDetails.preview ? '500px' : '',
 		position: eventDetails && eventDetails.preview ? 'relative' : 'absolute',
 		top:
 			eventDetails && eventDetails.preview
 				? 0
-				: Math.round(eventDetails.startTime * 3.3333),
+				: Math.round(totalStartTime * 3.3333),
 		left: `${left}px`,
 	} as React.CSSProperties
 
 	// converting minutes to readable time
-	const startTime = convertTime(eventDetails.startTime)
-	const endTime = convertTime(eventDetails.endTime)
+	const startTime = convertTime(totalStartTime)
+	const endTime = convertTime(totalEndTime)
 
 	// creating character limit and gap between label and time
 	let gap: number = 5
@@ -45,6 +56,17 @@ const Event = ({ eventDetails, left }: Props) => {
 			? eventDetails.label.substring(0, limit) + '...'
 			: eventDetails.label
 
+	if (length < 10) {
+		return (
+			<div className={styles.error}>
+				<p>
+					End Time cannot be <br />
+					the same or less <br />
+					than Start Time
+				</p>
+			</div>
+		)
+	}
 	return (
 		<div style={pos} className={styles.wrapper}>
 			<div style={eventStyles} className={styles.event}>
@@ -54,9 +76,12 @@ const Event = ({ eventDetails, left }: Props) => {
 					<div style={labelGap} className={styles.label}>
 						{label}
 					</div>
-					<div className={styles.time}>
-						{startTime} - {endTime}
-					</div>
+
+					{length > 15 && (
+						<div className={styles.time}>
+							{startTime} - {endTime}
+						</div>
+					)}
 				</div>
 			</div>
 		</div>
@@ -69,8 +94,8 @@ function convertTime(totalMins: number): string {
 	let amPm: string = 'am'
 
 	if (hourMath === 0) hours = '12'
-	else if (hourMath > 12) {
-		hours = `${hourMath - 12}`
+	else if (hourMath >= 12) {
+		hours = hourMath === 12 ? '12' : `${hourMath - 12}`
 		amPm = 'pm'
 	}
 

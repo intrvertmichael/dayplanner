@@ -2,6 +2,7 @@
 	display: block;
 	padding: 2px 0px;
 	box-sizing: border-box;
+	min-height: 33px;
 }
 
 .event {
@@ -34,4 +35,12 @@
 	font-weight: bold;
 	padding-bottom: 0px;
 	display: block;
+}
+
+.error {
+	background: red;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	border-radius: 5px;
 }

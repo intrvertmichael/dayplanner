@@ -16,8 +16,16 @@ const Form = () => {
 		id: 0,
 		label: 'This is the Event Label',
 		icon: '🙂',
-		startTime: 0,
-		endTime: 30,
+		time_start: {
+			hours: 1,
+			mins: 0,
+			pm: false,
+		},
+		time_end: {
+			hours: 1,
+			mins: 30,
+			pm: false,
+		},
 		color: '',
 	})
 

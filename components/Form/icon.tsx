@@ -72,15 +72,8 @@ async function getEmojis() {
 }
 
 async function searchEmojis(query: string) {
-	console.log('query: ', query)
 	const res = await fetch(`https://api.emojisworld.fr/v1/search?q=${query}`)
-
-	console.log(res)
-
 	const data = await res.json()
-
-	console.log(data)
-
 	const result = data?.results.map((obj: any) => {
 		return obj.emoji
 	})
