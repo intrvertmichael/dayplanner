@@ -9,7 +9,7 @@
 	display: flex;
 	align-items: center;
 	border-radius: 5px;
-	background: lightgray;
+	background: #d3d3d3;
 	color: black;
 	height: 100%;
 	font-size: 0.8em;
@@ -38,9 +38,13 @@
 }
 
 .error {
-	background: red;
-	color: white;
-	text-align: center;
-	padding: 10px;
+	background: #da2828;
+	color: #ffffff;
+	padding: 20px;
 	border-radius: 5px;
+}
+
+.error p {
+	width: fit-content;
+	margin: auto;
 }

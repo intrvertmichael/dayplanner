@@ -10,11 +10,10 @@ import Time from './time'
 import Preview from './preview'
 
 const Form = () => {
-	const [showForm, setShowForm] = useState(false)
-	const [previewDetails, setPreviewDetails] = useState<DayEvent>({
+	const defaultEvent: DayEvent = {
 		preview: true,
 		id: 0,
-		label: 'This is the Event Label',
+		label: 'Enter the Event Label here...',
 		icon: '🙂',
 		time_start: {
 			hours: 1,
@@ -27,10 +26,20 @@ const Form = () => {
 			pm: false,
 		},
 		color: '',
-	})
+	}
+	const [showForm, setShowForm] = useState(false)
+	const [previewDetails, setPreviewDetails] = useState<DayEvent>(defaultEvent)
 
 	function toggleFormVisbility() {
 		setShowForm(!showForm)
+	}
+
+	function formSubmitted() {
+		console.log('form was submitted')
+	}
+
+	function formReset() {
+		setPreviewDetails(defaultEvent)
 	}
 
 	return (
@@ -54,7 +63,7 @@ const Form = () => {
 
 			<Preview showForm={showForm} previewDetails={previewDetails} />
 
-			<h3>Add an Event</h3>
+			<h3>New Event</h3>
 			<Icon
 				previewDetails={previewDetails}
 				setPreviewDetails={setPreviewDetails}
@@ -78,7 +87,12 @@ const Form = () => {
 				setPreviewDetails={setPreviewDetails}
 			/>
 
-			<input type='button' value='send' />
+			<div>
+				<input type='button' value='Add Event' onClick={formSubmitted} />
+				<button className={styles.reset} onClick={formReset}>
+					Reset
+				</button>
+			</div>
 		</div>
 	)
 }

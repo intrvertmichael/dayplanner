@@ -6,19 +6,28 @@ const Text = ({ previewDetails, setPreviewDetails }: FormProps) => {
 			<label>Event Label:</label>
 			<input
 				type='text'
-				placeholder='Enter the Event Label here...'
-				onChange={(e) => {
-					if (e.target.value === '') {
+				value={previewDetails.label}
+				onFocus={() => {
+					if (previewDetails.label === 'Enter the Event Label here...') {
 						setPreviewDetails({
 							...previewDetails,
-							label: 'This is the Event Label',
-						})
-					} else {
-						setPreviewDetails({
-							...previewDetails,
-							label: e.target.value,
+							label: '',
 						})
 					}
+				}}
+				onBlur={() => {
+					if (previewDetails.label === '') {
+						setPreviewDetails({
+							...previewDetails,
+							label: 'Enter the Event Label here...',
+						})
+					}
+				}}
+				onChange={(e) => {
+					setPreviewDetails({
+						...previewDetails,
+						label: e.target.value,
+					})
 				}}
 			/>
 		</>

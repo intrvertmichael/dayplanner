@@ -4,8 +4,6 @@ import styles from '../../styles/Form.module.css'
 import { FormProps } from '../../types'
 
 const Color = ({ previewDetails, setPreviewDetails }: FormProps) => {
-	const [selectedColor, setSelectedColor] = useState('')
-
 	type hexColorType = {
 		[key: string]: string
 	}
@@ -20,14 +18,12 @@ const Color = ({ previewDetails, setPreviewDetails }: FormProps) => {
 	const chosen = '2px solid white'
 
 	function colorChosen(color: string) {
-		if (color === selectedColor) {
-			setSelectedColor('')
+		if (hexColor[color] === previewDetails.color) {
 			setPreviewDetails({
 				...previewDetails,
 				color: '',
 			})
 		} else {
-			setSelectedColor(color)
 			setPreviewDetails({
 				...previewDetails,
 				color: hexColor[color],
@@ -44,7 +40,7 @@ const Color = ({ previewDetails, setPreviewDetails }: FormProps) => {
 					onClick={() => colorChosen('red')}
 					style={{
 						background: hexColor['red'],
-						border: selectedColor === 'red' ? chosen : '',
+						border: previewDetails.color === hexColor['red'] ? chosen : '',
 					}}
 				/>
 				<div
@@ -52,7 +48,7 @@ const Color = ({ previewDetails, setPreviewDetails }: FormProps) => {
 					onClick={() => colorChosen('green')}
 					style={{
 						background: hexColor['green'],
-						border: selectedColor === 'green' ? chosen : '',
+						border: previewDetails.color === hexColor['green'] ? chosen : '',
 					}}
 				/>
 
@@ -61,7 +57,7 @@ const Color = ({ previewDetails, setPreviewDetails }: FormProps) => {
 					onClick={() => colorChosen('blue')}
 					style={{
 						background: '#b4cfe7',
-						border: selectedColor === 'blue' ? chosen : '',
+						border: previewDetails.color === hexColor['blue'] ? chosen : '',
 					}}
 				/>
 
@@ -70,7 +66,7 @@ const Color = ({ previewDetails, setPreviewDetails }: FormProps) => {
 					onClick={() => colorChosen('yellow')}
 					style={{
 						background: '#f4b721',
-						border: selectedColor === 'yellow' ? chosen : '',
+						border: previewDetails.color === hexColor['yellow'] ? chosen : '',
 					}}
 				/>
 			</div>

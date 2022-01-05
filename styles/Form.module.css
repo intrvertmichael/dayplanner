@@ -27,6 +27,10 @@
 	transition: transform ease 0.5s;
 }
 
+.form h3 {
+	margin-bottom: 0;
+}
+
 .form label {
 	width: 100%;
 	display: block;
@@ -51,8 +55,26 @@
 	border: 1px solid black;
 	cursor: pointer;
 }
+
 .form input[type='button']:hover {
 	border: 1px solid white;
+}
+
+.reset {
+	background: none;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	margin-left: 10px;
+	color: white;
+	cursor: pointer;
+	border: 2px solid transparent;
+}
+
+.reset:hover {
+	border: 2px solid white;
+	color: white;
 }
 
 /* COLORS */
