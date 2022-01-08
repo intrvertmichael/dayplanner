@@ -1,21 +1,36 @@
+import { Dispatch, SetStateAction } from 'react'
 import styles from '../../styles/Form.module.css'
-import { DayEvent } from '../../types'
+import { DayEvent, validation } from '../../types'
 import AmPm from './time_ampm'
 import Hours from './time_hours'
 import Mins from './time_mins'
 
 interface Props {
 	start: boolean
+	validator: validation
+	setValidator: Dispatch<SetStateAction<validation>>
 	previewDetails: DayEvent
 	setPreviewDetails: React.Dispatch<React.SetStateAction<DayEvent>>
 }
 
-const Time = ({ start, previewDetails, setPreviewDetails }: Props) => {
+const Time = ({
+	start,
+	validator,
+	setValidator,
+	previewDetails,
+	setPreviewDetails,
+}: Props) => {
+	let errorStyle = { border: '3px solid red' }
+	let style
+
+	if (start && validator.time_start) style = errorStyle
+	if (!start && validator.time_end) style = errorStyle
+
 	return (
 		<div className={styles.time}>
 			<label>{start ? 'Start Time:' : 'End Time'}</label>
 
-			<div className={styles.timeSelection}>
+			<div className={styles.timeSelection} style={style}>
 				<Hours
 					start={start}
 					previewDetails={previewDetails}

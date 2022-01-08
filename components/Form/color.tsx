@@ -1,9 +1,8 @@
-import { useState } from 'react'
 import styles from '../../styles/Form.module.css'
 
 import { FormProps } from '../../types'
 
-const Color = ({ previewDetails, setPreviewDetails }: FormProps) => {
+const Color = ({ validator, previewDetails, setPreviewDetails }: FormProps) => {
 	type hexColorType = {
 		[key: string]: string
 	}
@@ -31,10 +30,12 @@ const Color = ({ previewDetails, setPreviewDetails }: FormProps) => {
 		}
 	}
 
+	const style = validator.color ? { border: '3px solid red' } : {}
+
 	return (
 		<>
 			<label>Color:</label>
-			<div className={styles.colors}>
+			<div className={styles.colors} style={style}>
 				<div
 					className={styles.colorBlock}
 					onClick={() => colorChosen('red')}

@@ -13,25 +13,6 @@
 	border: none;
 }
 
-.errorMessages {
-	background: #da2828;
-	padding: 10px 20px;
-	box-sizing: border-box;
-	font-size: 0.85em;
-	border-radius: 3px;
-}
-
-.errorMessages ul,
-.errorMessages li {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-.errorMessages li {
-	margin-bottom: 10px;
-}
-
 .form {
 	width: 300px;
 	padding: 0px 25px 20px;
