@@ -12,13 +12,23 @@ export default function Mins({
 	previewDetails,
 }: Props) {
 	function minChanged(e: React.ChangeEvent<HTMLSelectElement>) {
-		setPreviewDetails({
-			...previewDetails,
-			[start ? 'time_start' : 'time_end']: {
-				...previewDetails.time_start,
-				mins: parseInt(e.target.value),
-			},
-		})
+		if (start) {
+			setPreviewDetails({
+				...previewDetails,
+				time_start: {
+					...previewDetails.time_start,
+					mins: parseInt(e.target.value),
+				},
+			})
+		} else {
+			setPreviewDetails({
+				...previewDetails,
+				time_end: {
+					...previewDetails.time_end,
+					mins: parseInt(e.target.value),
+				},
+			})
+		}
 	}
 
 	return (

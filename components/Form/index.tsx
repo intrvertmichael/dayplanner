@@ -9,10 +9,11 @@ import Icon from './icon'
 import Time from './time'
 import Preview from './preview'
 
+import { getTotalTime } from '../Event'
+
 const Form = () => {
 	const defaultEvent: DayEvent = {
 		preview: true,
-		id: 0,
 		label: 'Enter the Event Label here...',
 		icon: '🙂',
 		time_start: {
@@ -28,6 +29,7 @@ const Form = () => {
 		color: '',
 	}
 	const [showForm, setShowForm] = useState(false)
+	const [errorMessages, setErrorMessages] = useState<string[]>([])
 	const [previewDetails, setPreviewDetails] = useState<DayEvent>(defaultEvent)
 
 	function toggleFormVisbility() {
@@ -35,11 +37,30 @@ const Form = () => {
 	}
 
 	function formSubmitted() {
-		console.log('form was submitted')
+		console.log('previewDetails', previewDetails)
+
+		const totalStartTime: number = getTotalTime(previewDetails.time_start)
+		const totalEndTime: number = getTotalTime(previewDetails.time_end)
+		const length = totalEndTime - totalStartTime
+
+		console.log('totalStartTime', totalStartTime)
+		console.log('totalEndTime', totalEndTime)
+		console.log('length', length)
+
+		let error: string[] = []
+		if (length < 0) error.push('The End Time must be after the Start Time')
+		if (previewDetails.color === '')
+			error.push("Please don't forget to choose a color")
+		if (previewDetails.label === 'Enter the Event Label here...')
+			error.push('Please add a label to the Event')
+		if (previewDetails.icon === '') error.push('Please choose an icon')
+		console.log('error', error)
+		setErrorMessages(error)
 	}
 
 	function formReset() {
 		setPreviewDetails(defaultEvent)
+		setErrorMessages([])
 	}
 
 	return (
@@ -64,6 +85,15 @@ const Form = () => {
 			<Preview showForm={showForm} previewDetails={previewDetails} />
 
 			<h3>New Event</h3>
+
+			{errorMessages.length > 0 && (
+				<ul className={styles.errorMessages}>
+					{errorMessages.map((message, key) => {
+						return <li key={key}>{message}</li>
+					})}
+				</ul>
+			)}
+
 			<Icon
 				previewDetails={previewDetails}
 				setPreviewDetails={setPreviewDetails}

@@ -29,7 +29,7 @@ export default function Hours({
 			setPreviewDetails({
 				...previewDetails,
 				time_end: {
-					...previewDetails.time_start,
+					...previewDetails.time_end,
 					hours: hour,
 				},
 			})
@@ -44,25 +44,24 @@ export default function Hours({
 			}
 			id='hour'
 			onChange={hourChanged}>
-			{getHourDropDown(start, previewDetails.time_start.hours)}
+			{getHourDropDown()}
 		</select>
 	)
 }
 
-function getHourDropDown(start: boolean, startTime: number) {
-	// const limit = startTime === 0 ? 1 : startTime
-	const limit = 1
-	let hours = start ? 1 : limit
+function getHourDropDown() {
 	let hourDropDown: JSX.Element[] = []
 
-	while (hours <= 12) {
+	let hour = 1
+	while (hour <= 12) {
+		const value = hour === 12 ? 0 : hour
 		hourDropDown.push(
-			<option key={hours} value={hours}>
-				{hours < 10 ? `0${hours}` : hours}
+			<option key={value} value={value}>
+				{hour < 10 ? `0${hour}` : hour}
 			</option>,
 		)
 
-		hours++
+		hour++
 	}
 
 	return hourDropDown

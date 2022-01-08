@@ -1,5 +1,5 @@
 import styles from '../../styles/Event.module.css'
-import { DayEvent } from '../../types'
+import { DayEvent, Time } from '../../types'
 
 interface Props {
 	key: number
@@ -7,21 +7,21 @@ interface Props {
 	eventDetails: DayEvent
 }
 
+export function getTotalTime(time: Time): number {
+	let total: number = 0
+	total += time.hours * 60
+	total += time.mins
+	total += time.pm ? 12 * 60 : 0
+	return total
+}
+
 const Event = ({ eventDetails, left }: Props) => {
 	const eventStyles = {
 		backgroundColor: eventDetails.color,
 	}
 
-	let totalStartTime: number = 0
-	totalStartTime += eventDetails.time_start.hours * 60
-	totalStartTime += eventDetails.time_start.mins
-	totalStartTime += eventDetails.time_start.pm ? 12 * 60 : 0
-
-	let totalEndTime: number = 0
-	totalEndTime += eventDetails.time_end.hours * 60
-	totalEndTime += eventDetails.time_end.mins
-	totalEndTime += eventDetails.time_end.pm ? 12 * 60 : 0
-
+	const totalStartTime: number = getTotalTime(eventDetails.time_start)
+	const totalEndTime: number = getTotalTime(eventDetails.time_end)
 	const length = totalEndTime - totalStartTime
 
 	const pos = {

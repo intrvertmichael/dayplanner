@@ -1,11 +1,11 @@
-interface Time {
+export interface Time {
 	hours: number
 	mins: number
 	pm: boolean
 }
 
 export interface DayEvent {
-	id: number
+	id?: number
 	label: string
 	icon: string
 	time_start: Time
