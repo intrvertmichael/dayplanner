@@ -4,13 +4,9 @@ import styles from '../../styles/Timeline.module.css'
 import Event from '../Event'
 import { DayEvent } from '../../types'
 
-interface Props {
-	events: DayEvent[]
-}
-
-const Timeline = (Props: Props) => {
+const Timeline = (Props: { events: DayEvent[] }) => {
 	const { events } = Props
-	let labels = [<li key={12}>{12}</li>]
+	const labels = [<li key={12}>{12}</li>]
 	for (let i = 1; i <= 12; i++) labels.push(<li key={'am' + i}> {i} </li>)
 	for (let i = 1; i <= 11; i++) labels.push(<li key={'pm' + i}> {i} </li>)
 

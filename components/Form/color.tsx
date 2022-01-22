@@ -44,6 +44,7 @@ const Color = ({ validator, previewDetails, setPreviewDetails }: FormProps) => {
 						border: previewDetails.color === hexColor['red'] ? chosen : '',
 					}}
 				/>
+
 				<div
 					className={styles.colorBlock}
 					onClick={() => colorChosen('green')}

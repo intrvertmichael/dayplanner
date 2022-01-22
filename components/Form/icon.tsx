@@ -64,7 +64,7 @@ async function getEmojis() {
 	const data = await res.json()
 
 	// TODO: fix this type to not be any
-	const popular = data?.results.map((obj: any) => {
+	const popular = data?.results.map((obj: { emoji: string }) => {
 		return obj.emoji
 	})
 
@@ -74,7 +74,7 @@ async function getEmojis() {
 async function searchEmojis(query: string) {
 	const res = await fetch(`https://api.emojisworld.fr/v1/search?q=${query}`)
 	const data = await res.json()
-	const result = data?.results.map((obj: any) => {
+	const result = data?.results.map((obj: { emoji: string }) => {
 		return obj.emoji
 	})
 

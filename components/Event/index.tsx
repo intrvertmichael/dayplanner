@@ -8,7 +8,7 @@ interface Props {
 }
 
 export function getTotalTime(time: Time): number {
-	let total: number = 0
+	let total = 0
 	total += time.hours * 60
 	total += time.mins
 	total += time.pm ? 12 * 60 : 0
@@ -40,7 +40,7 @@ const Event = ({ eventDetails, left }: Props) => {
 	const endTime = convertTime(totalEndTime)
 
 	// creating character limit and gap between label and time
-	let gap: number = 5
+	let gap = 5
 	let limit: number
 
 	if (length <= 15) {
@@ -50,8 +50,8 @@ const Event = ({ eventDetails, left }: Props) => {
 	else if (length <= 45) limit = 140
 	else limit = 180
 
-	let labelGap = { paddingBottom: `${gap}px` }
-	let label =
+	const labelGap = { paddingBottom: `${gap}px` }
+	const label =
 		eventDetails.label.length >= limit
 			? eventDetails.label.substring(0, limit) + '...'
 			: eventDetails.label
@@ -90,8 +90,8 @@ const Event = ({ eventDetails, left }: Props) => {
 
 function convertTime(totalMins: number): string {
 	const hourMath: number = Math.floor(totalMins / 60)
-	let hours: string = `${hourMath}`
-	let amPm: string = 'am'
+	let hours = `${hourMath}`
+	let amPm = 'am'
 
 	if (hourMath === 0) hours = '12'
 	else if (hourMath >= 12) {

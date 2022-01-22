@@ -1,16 +1,14 @@
 import React from 'react'
 
-interface Props {
-	previewDetails: any
-	setPreviewDetails: any
-	start: boolean
-}
-
 export default function Mins({
 	start,
 	setPreviewDetails,
 	previewDetails,
-}: Props) {
+}: {
+	previewDetails: any
+	setPreviewDetails: any
+	start: boolean
+}) {
 	function minChanged(e: React.ChangeEvent<HTMLSelectElement>) {
 		if (start) {
 			setPreviewDetails({
@@ -45,8 +43,8 @@ export default function Mins({
 }
 
 function getMinDropDown() {
-	let minDropDown: JSX.Element[] = []
-	let mins: number = 0
+	const minDropDown: JSX.Element[] = []
+	let mins = 0
 	while (mins < 60) {
 		let label = `${mins}`
 		if (mins === 0) label = '00'

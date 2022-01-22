@@ -1,16 +1,14 @@
 import React from 'react'
 
-interface Props {
-	previewDetails: any
-	setPreviewDetails: any
-	start: boolean
-}
-
 export default function Hours({
 	start,
 	previewDetails,
 	setPreviewDetails,
-}: Props) {
+}: {
+	previewDetails: any
+	setPreviewDetails: any
+	start: boolean
+}) {
 	function hourChanged(e: React.ChangeEvent<HTMLSelectElement>) {
 		const hour = parseInt(e.target.value)
 		if (start) {
@@ -50,7 +48,7 @@ export default function Hours({
 }
 
 function getHourDropDown() {
-	let hourDropDown: JSX.Element[] = []
+	const hourDropDown: JSX.Element[] = []
 
 	let hour = 1
 	while (hour <= 12) {

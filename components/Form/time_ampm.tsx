@@ -1,16 +1,14 @@
 import React from 'react'
 
-interface Props {
-	previewDetails: any
-	setPreviewDetails: any
-	start: boolean
-}
-
 export default function AmPm({
 	start,
 	setPreviewDetails,
 	previewDetails,
-}: Props) {
+}: {
+	previewDetails: any
+	setPreviewDetails: any
+	start: boolean
+}) {
 	function amPmChanged(e: React.ChangeEvent<HTMLSelectElement>) {
 		if (start) {
 			setPreviewDetails({
@@ -35,7 +33,7 @@ export default function AmPm({
 		}
 	}
 
-	let v: string = previewDetails[start ? 'time_start' : 'time_end'].pm
+	const v: string = previewDetails[start ? 'time_start' : 'time_end'].pm
 		? 'pm'
 		: 'am'
 

@@ -3,11 +3,7 @@ import Event from '../Event'
 
 import { DayEvent } from '../../types'
 
-interface Props {
-	showForm: boolean
-	previewDetails: DayEvent
-}
-const Preview = (props: Props) => {
+const Preview = (props: { showForm: boolean; previewDetails: DayEvent }) => {
 	return (
 		<div
 			className={styles.example}
