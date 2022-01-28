@@ -8,8 +8,7 @@ import Text from './text'
 import Icon from './icon'
 import Time from './time'
 import Preview from './preview'
-
-import { getTotalTime } from '../Event'
+import { hasErrors } from './errors'
 
 const Form = () => {
 	const defaultEvent: DayEvent = {
@@ -46,20 +45,8 @@ const Form = () => {
 	}
 
 	function formSubmitted() {
-		const totalStartTime: number = getTotalTime(previewDetails.time_start)
-		const totalEndTime: number = getTotalTime(previewDetails.time_end)
-		const length = totalEndTime - totalStartTime
-
-		console.log('previewDetails', previewDetails)
-
-		setValidator({
-			icon: previewDetails.icon === '🙂' ? true : false,
-			label:
-				previewDetails.label === 'Enter the Event Label here...' ? true : false,
-			color: previewDetails.color === '' ? true : false,
-			time_start: false,
-			time_end: length < 0 ? true : false,
-		})
+		const valid = hasErrors(previewDetails, setValidator)
+		if (valid) console.log("it's all good")
 	}
 
 	function formReset() {
@@ -67,22 +54,28 @@ const Form = () => {
 		setValidator(defaultValidator)
 	}
 
+	const formStateProps = {
+		validator,
+		setValidator,
+		previewDetails,
+		setPreviewDetails,
+	}
+
+	const formDivStyle = showForm
+		? { transform: 'translateX(0%)' }
+		: { transform: 'translateX(100%)' }
+
+	const formBtnStyle = showForm
+		? { transform: 'rotate(-45deg)' }
+		: { transform: 'rotate(0deg)' }
+
 	return (
-		<div
-			className={styles.form}
-			style={
-				showForm
-					? { transform: 'translateX(0%)' }
-					: { transform: 'translateX(100%)' }
-			}>
+		<div className={styles.form} style={formDivStyle}>
 			<button
 				className={styles.toggle}
-				style={
-					showForm
-						? { transform: 'rotate(-45deg)' }
-						: { transform: 'rotate(0deg)' }
-				}
-				onClick={toggleFormVisbility}>
+				style={formBtnStyle}
+				onClick={toggleFormVisbility}
+			>
 				+
 			</button>
 
@@ -90,45 +83,15 @@ const Form = () => {
 
 			<h3>New Event</h3>
 
-			<Icon
-				validator={validator}
-				setValidator={setValidator}
-				previewDetails={previewDetails}
-				setPreviewDetails={setPreviewDetails}
-			/>
-
-			<Color
-				validator={validator}
-				setValidator={setValidator}
-				previewDetails={previewDetails}
-				setPreviewDetails={setPreviewDetails}
-			/>
-
-			<Text
-				validator={validator}
-				setValidator={setValidator}
-				previewDetails={previewDetails}
-				setPreviewDetails={setPreviewDetails}
-			/>
-
-			<Time
-				start={true}
-				validator={validator}
-				setValidator={setValidator}
-				previewDetails={previewDetails}
-				setPreviewDetails={setPreviewDetails}
-			/>
-
-			<Time
-				start={false}
-				validator={validator}
-				setValidator={setValidator}
-				previewDetails={previewDetails}
-				setPreviewDetails={setPreviewDetails}
-			/>
+			<Icon {...formStateProps} />
+			<Color {...formStateProps} />
+			<Text {...formStateProps} />
+			<Time {...{ start: true, ...formStateProps }} />
+			<Time {...{ start: false, ...formStateProps }} />
 
 			<div>
 				<input type='button' value='Add Event' onClick={formSubmitted} />
+
 				<button className={styles.reset} onClick={formReset}>
 					Reset
 				</button>

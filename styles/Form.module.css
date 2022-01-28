@@ -140,7 +140,7 @@
 
 	-ms-word-break: normal;
 	word-break: normal;
-
+	border-radius: 0px;
 	background-image: url('../public/down_arrow.svg');
 	background-position: right 20% top 50%;
 	background-size: 10px;

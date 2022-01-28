@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
+import { DayEvent } from '../../types'
 
 export default function Hours({
 	start,
 	previewDetails,
 	setPreviewDetails,
 }: {
-	previewDetails: any
-	setPreviewDetails: any
+	previewDetails: DayEvent
+	setPreviewDetails: Dispatch<SetStateAction<DayEvent>>
 	start: boolean
 }) {
 	function hourChanged(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -41,7 +42,8 @@ export default function Hours({
 				start ? previewDetails.time_start.hours : previewDetails.time_end.hours
 			}
 			id='hour'
-			onChange={hourChanged}>
+			onChange={hourChanged}
+		>
 			{getHourDropDown()}
 		</select>
 	)

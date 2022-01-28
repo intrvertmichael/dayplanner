@@ -5,22 +5,20 @@ import AmPm from './time_ampm'
 import Hours from './time_hours'
 import Mins from './time_mins'
 
-interface Props {
+const Time = ({
+	start,
+	validator,
+	// setValidator,
+	previewDetails,
+	setPreviewDetails,
+}: {
 	start: boolean
 	validator: validation
 	setValidator: Dispatch<SetStateAction<validation>>
 	previewDetails: DayEvent
 	setPreviewDetails: React.Dispatch<React.SetStateAction<DayEvent>>
-}
-
-const Time = ({
-	start,
-	validator,
-	setValidator,
-	previewDetails,
-	setPreviewDetails,
-}: Props) => {
-	let errorStyle = { border: '3px solid red' }
+}) => {
+	const errorStyle = { border: '3px solid red' }
 	let style
 
 	if (start && validator.time_start) style = errorStyle

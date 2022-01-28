@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
+import { DayEvent } from '../../types'
 
 export default function AmPm({
 	start,
 	setPreviewDetails,
 	previewDetails,
 }: {
-	previewDetails: any
-	setPreviewDetails: any
+	previewDetails: DayEvent
+	setPreviewDetails: Dispatch<SetStateAction<DayEvent>>
 	start: boolean
 }) {
 	function amPmChanged(e: React.ChangeEvent<HTMLSelectElement>) {

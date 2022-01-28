@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
+import { DayEvent } from '../../types'
 
 export default function Mins({
 	start,
 	setPreviewDetails,
 	previewDetails,
 }: {
-	previewDetails: any
-	setPreviewDetails: any
+	previewDetails: DayEvent
+	setPreviewDetails: Dispatch<SetStateAction<DayEvent>>
 	start: boolean
 }) {
 	function minChanged(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -36,7 +37,8 @@ export default function Mins({
 			value={
 				start ? previewDetails.time_start.mins : previewDetails.time_end.mins
 			}
-			onChange={minChanged}>
+			onChange={minChanged}
+		>
 			{getMinDropDown()}
 		</select>
 	)
